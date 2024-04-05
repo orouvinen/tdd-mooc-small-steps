@@ -21,14 +21,13 @@ function createApp(database: Database) {
     const type = req.query.type as string;
     const baseCost = database.findBasePriceByType(type)!.cost;
     const date = parseDate(req.query.date as string);
-    const plainDate = date ? convertDate(date) : undefined;
-    const cost = calculateCost(age, type, plainDate, baseCost);
+    const cost = calculateCost(age, type, date, baseCost);
     res.json({ cost });
   });
 
-  function parseDate(dateString: string | undefined): Date | undefined {
+  function parseDate(dateString: string | undefined): Temporal.PlainDate | undefined {
     if (dateString) {
-      return new Date(dateString);
+      return Temporal.PlainDate.from(dateString);
     }
   }
 
