@@ -94,13 +94,4 @@ function createApp(database: Database) {
   return app;
 }
 
-const convertDate = (date: Date): Temporal.PlainDate => {
-  return Temporal.PlainDate.from({
-    year: date.getFullYear(),
-    month: date.getMonth() + 1,
-    day: date.getDate()
-  });
-};
-
-
 export { createApp };
